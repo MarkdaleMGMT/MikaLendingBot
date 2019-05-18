@@ -5,7 +5,7 @@ class DB():
     def __init__(self, cfg, log):
         self.cfg = cfg
         self.log = log
-        self.connection = connect_to_database(self.cfg)
+        self.connection = self.connect_to_database(self.cfg)
 
     def connect_to_database(cfg):
         """
@@ -17,7 +17,7 @@ class DB():
                                    host=cfg.get("DATABASE", "host", None),
                                    database=cfg.get("DATABASE", "db_name", None),
                                    auth_plugin='mysql_native_password')
-                                   
+
         self.log.log("db connection successful")
 
     def __del__(self):
