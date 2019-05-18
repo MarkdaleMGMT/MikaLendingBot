@@ -13,12 +13,13 @@ import modules.Configuration as Config
 import modules.Data as Data
 import modules.Lending as Lending
 import modules.MaxToLend as MaxToLend
-import modules.DB as DB
+
 
 from modules.Logger import Logger
 import modules.PluginsManager as PluginsManager
 from modules.ExchangeApiFactory import ExchangeApiFactory
 from modules.ExchangeApi import ApiError
+from modules.DB import DB
 
 
 
