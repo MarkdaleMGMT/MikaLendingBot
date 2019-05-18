@@ -38,8 +38,6 @@ class DB():
 
         return api_key, secret
 
-    #returns the status along with the new image id
-    return (isSuccessful,new_image_id)
 
 #Updates the file paths of the images corresponding to a specific image id
 def update_path(image_id,image_paths):
