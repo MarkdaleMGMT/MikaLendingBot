@@ -7,10 +7,10 @@ class DB():
         self.connection = connect_to_database(self.cfg)
 
     def connect_to_database(cfg):
-    """
-        Reads parameters from configuration and connects to the db
-    :return: connection object
-    """
+        """
+            Reads parameters from configuration and connects to the db
+        :return: connection object
+        """
         return mysql.connector.connect(user=cfg.get("DATABASE", "username", None),
                                    password=cfg.get("DATABASE", "password", None),
                                    host=cfg.get("DATABASE", "host", None),
