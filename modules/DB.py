@@ -7,7 +7,7 @@ class DB():
         self.log = log
         self.connection = self.connect_to_database(self.cfg)
 
-    def connect_to_database(cfg):
+    def connect_to_database(self, cfg):
         """
             Reads parameters from configuration and connects to the db
         :return: connection object
