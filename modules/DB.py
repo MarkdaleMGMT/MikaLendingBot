@@ -25,7 +25,7 @@ class DB():
         cursor = self.connection.cursor(buffered=True)
 
         #fetches a record for user corresponding to a specific user_name
-        cursor.execute ('SELECT  FROM api_access_info WHERE source = %s AND type = "lending bot"',(exchange,))
+        cursor.execute ('SELECT * FROM api_access_info WHERE source = %s AND type = %s',(exchange,'lending bot'))
         api_info = cursor.fetchone()
 
         #if api info does not exist throw an exception
