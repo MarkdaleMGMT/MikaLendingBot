@@ -10,7 +10,7 @@ EXCHANGE = {'POLONIEX': Poloniex, 'BITFINEX': Bitfinex}
 
 class ExchangeApiFactory(object):
     @staticmethod
-    def createApi(exchange, cfg, log):
+    def createApi(exchange, cfg, log, api_key, secret):
         if exchange not in EXCHANGE:
             raise Exception("Invalid exchange: " + exchange)
-        return EXCHANGE[exchange](cfg, log)
+        return EXCHANGE[exchange](cfg, log, api_key, secret)

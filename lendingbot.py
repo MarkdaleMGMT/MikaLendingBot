@@ -73,7 +73,7 @@ log = Logger(jsonfile, Decimal(Config.get('BOT', 'jsonlogsize', 200)), exchange)
 
 #Connect to the database
 db = DB(Config, log)
-
+api_key, secret = db.get_api_access_info(exchange)
 
 # initialize the remaining stuff
 api = ExchangeApiFactory.createApi(exchange, Config, log, api_key, secret)

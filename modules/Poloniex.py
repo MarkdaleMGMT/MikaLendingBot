@@ -29,12 +29,15 @@ def post_process(before):
 
 
 class Poloniex(ExchangeApi):
-    def __init__(self, cfg, log):
+    def __init__(self, cfg, log, api_key, secret):
         super(Poloniex, self).__init__(cfg, log)
         self.cfg = cfg
         self.log = log
-        self.APIKey = self.cfg.get("API", "apikey", None)
-        self.Secret = self.cfg.get("API", "secret", None)
+        # self.APIKey = self.cfg.get("API", "apikey", None)
+        # self.Secret = self.cfg.get("API", "secret", None)
+        self.APIKey = api_key
+        self.Secret = secret
+        
         self.req_per_period = 6
         self.default_req_period = 1000  # milliseconds
         self.req_period = self.default_req_period
