@@ -71,7 +71,7 @@ if web_server_enabled:
 log = Logger(jsonfile, Decimal(Config.get('BOT', 'jsonlogsize', 200)), exchange)
 
 #Connect to the database
-DB.init(Config, log)
+db = DB(Config, log)
 
 
 # initialize the remaining stuff
