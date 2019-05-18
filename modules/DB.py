@@ -32,9 +32,8 @@ class DB():
         if api_info is None:
             self.log.log_error("API access info not found!")
 
-        api_key, secret = api_info[0], api_info[1]
-
-        cursor.close()
+        api_key, secret = str(api_info[0]), str(api_info[1])
+       	cursor.close()
 
         return api_key, secret
 
