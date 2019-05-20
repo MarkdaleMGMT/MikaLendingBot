@@ -38,54 +38,6 @@ class DB():
         return api_key, secret
 
 
-#Updates the file paths of the images corresponding to a specific image id
-def update_path(image_id,image_paths):
-    """
-    Updates the file paths of the images corresponding to a specific image id
-
-    :param image_id:id of the image whose file paths need to be updated
-    :param image_paths:mage_paths contains all the paths including that of original file,thumbnail and transformations
-    :return: bool: isSuccessful: outcome of operation
-    """
-
-    isSuccessful = False
-    try:
-
-        cxn = get_db()
-        cursor = cxn.cursor()
-        update_path_query = """UPDATE images
-                            SET original_path = %s, thumbnail = %s, transformation1_path = %s,
-                            transformation2_path = %s, transformation3_path = %s
-                            where image_id = %s """
-        update_data = (image_paths['original_path'],
-                        image_paths['thumbnail_path'],
-                        image_paths['transformation1_path'],
-                        image_paths['transformation2_path'],
-                        image_paths['transformation3_path'],image_id)
-
-        cursor.execute(update_path_query,update_data)
-
-        cxn.commit()
-        print("update_path" + str(cursor.rowcount) + "rows affected")
-
-        #if a single row has been updated, the operation was successful
-        if cursor.rowcount == 1:
-            isSuccessful = True
-
-    except Exception as e:
-        # Logs the error appropriately and rollback transaction
-        isSuccessful = False
-        traceback.print_exc()
-        cxn.rollback()
-
-
-    finally:
-        cursor.close()
-
-    #return outcome of the operation
-    return isSuccessful
-
-
     def __del__(self):
       # body of destructor
       self.connection.close()
