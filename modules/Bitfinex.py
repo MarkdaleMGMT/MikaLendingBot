@@ -14,7 +14,7 @@ from modules.RingBuffer import RingBuffer
 
 
 class Bitfinex(ExchangeApi):
-    def __init__(self, cfg, log):
+    def __init__(self, cfg, log, api_key, secret):
         super(Bitfinex, self).__init__(cfg, log)
         self.cfg = cfg
         self.log = log
@@ -24,8 +24,12 @@ class Bitfinex(ExchangeApi):
         self.req_period = self.default_req_period
         self.req_time_log = RingBuffer(self.req_per_period)
         self.url = 'https://api.bitfinex.com'
-        self.key = self.cfg.get("API", "apikey", None)
-        self.secret = self.cfg.get("API", "secret", None)
+        # self.key = self.cfg.get("API", "apikey", None)
+        # self.secret = self.cfg.get("API", "secret", None)
+        self.key = api_key
+        self.secret = secret
+
+
         self.apiVersion = 'v1'
         self.symbols = []
         self.ticker = {}

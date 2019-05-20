@@ -13,10 +13,14 @@ import modules.Configuration as Config
 import modules.Data as Data
 import modules.Lending as Lending
 import modules.MaxToLend as MaxToLend
+
+
 from modules.Logger import Logger
 import modules.PluginsManager as PluginsManager
 from modules.ExchangeApiFactory import ExchangeApiFactory
 from modules.ExchangeApi import ApiError
+from modules.DB import DB
+
 
 
 try:
@@ -51,6 +55,8 @@ exchange = Config.get_exchange()
 json_output_enabled = Config.has_option('BOT', 'jsonfile') and Config.has_option('BOT', 'jsonlogsize')
 jsonfile = Config.get('BOT', 'jsonfile', '')
 
+
+
 # Configure web server
 web_server_enabled = Config.getboolean('BOT', 'startWebServer')
 if web_server_enabled:
@@ -65,8 +71,12 @@ if web_server_enabled:
 # Configure logging
 log = Logger(jsonfile, Decimal(Config.get('BOT', 'jsonlogsize', 200)), exchange)
 
+#Connect to the database
+db = DB(Config, log)
+api_key, secret = db.get_api_access_info(exchange)
+
 # initialize the remaining stuff
-api = ExchangeApiFactory.createApi(exchange, Config, log)
+api = ExchangeApiFactory.createApi(exchange, Config, log, api_key, secret)
 MaxToLend.init(Config, log)
 Data.init(api, log)
 Config.init(config_location, Data)

@@ -1,10 +1,15 @@
 # Need help configuring? View the Documentation: https://poloniexlendingbot.readthedocs.io/en/latest/configuration.html
 
+[DATABASE]
+host = IP
+db_name = DBName
+username = DBUsername
+password = DBPassword
+
 [API]
 # Where to work? "Poloniex" or "Bitfinex". Default is "Poloniex"
-#exchange = Poloniex
-apikey = YourAPIKey
-secret = YourSecret
+exchange = Poloniex
+
 
 [POLONIEX]
 # Full list of supported currencies
